@@ -23,6 +23,21 @@ ASC 上当前的两个 URL 都是**审核阻塞项**，且都不是"填一下就
 python3 tool/shots/build_legal_site.py --out marketing/site
 ```
 
+## ASC 回填（部署完成后）
+
+正式域名 `https://drawing-privacy.pages.dev`：
+
+| ASC 字段 | 填写 |
+|---|---|
+| `appInfoLocalizations.supportUrl` | `https://drawing-privacy.pages.dev/zh-Hans.html` |
+| `appInfoLocalizations.privacyPolicyUrl` | `https://drawing-privacy.pages.dev/privacy/zh-Hans.html` |
+| `appInfoLocalizations.marketingUrl` | `https://drawing-privacy.pages.dev/app/` |
+| `appStoreVersionLocalizations.supportUrl` | 同上，按各 locale 换成对应语言页 |
+
+⚠️ 页面内链接一律用**站点根绝对路径**（`/privacy/...`、`/terms/...`、`/`），
+不用 `../../` 相对路径 —— 相对路径依赖尾斜杠，用户从 `/terms`（无斜杠）
+进来时 `../` 会解析到域外。
+
 产出：
 
 ```
@@ -105,8 +120,8 @@ Japanese, and Korean.</p>
 network connection.</p>
 <h2>Legal</h2>
 <ul>
-  <li><a href="privacy/{lang}.html">Privacy Policy</a></li>
-  <li><a href="terms/{lang}.html">Terms of Service</a></li>
+  <li><a href="/privacy/{lang}.html">Privacy Policy</a></li>
+  <li><a href="/terms/{lang}.html">Terms of Service</a></li>
 </ul>""",
     "zh-Hans": """<h1>支持</h1>
 <p>感谢使用简笔画涂鸦板。我们会在 15 个工作日内回复每一条反馈。</p>
@@ -142,8 +157,8 @@ network connection.</p>
 <p>可以。填色、自由画、照片涂鸦和壁纸都不需要联网。</p>
 <h2>法律条款</h2>
 <ul>
-  <li><a href="privacy/{lang}.html">隐私政策</a></li>
-  <li><a href="terms/{lang}.html">服务条款</a></li>
+  <li><a href="/privacy/{lang}.html">隐私政策</a></li>
+  <li><a href="/terms/{lang}.html">服务条款</a></li>
 </ul>""",
     "zh-Hant": """<h1>支援</h1>
 <p>感謝使用簡筆畫塗鴉板。我們會在 15 個工作天內回覆每一則訊息。</p>
@@ -179,8 +194,8 @@ network connection.</p>
 <p>可以。填色、自由畫、照片塗鴉和桌布都不需要連網。</p>
 <h2>法律條款</h2>
 <ul>
-  <li><a href="privacy/{lang}.html">隱私權政策</a></li>
-  <li><a href="terms/{lang}.html">服務條款</a></li>
+  <li><a href="/privacy/{lang}.html">隱私權政策</a></li>
+  <li><a href="/terms/{lang}.html">服務條款</a></li>
 </ul>""",
     "ja": """<h1>サポート</h1>
 <p>おえかきボードをご利用いただきありがとうございます。すべてのご連絡に 15 営業日以内にご返信します。</p>
@@ -217,8 +232,8 @@ network connection.</p>
 <p>はい。塗り絵、自由描画、写真へのドラッグ、壁紙はいずれも通信不要です。</p>
 <h2>法的情報</h2>
 <ul>
-  <li><a href="privacy/{lang}.html">プライバシーポリシー</a></li>
-  <li><a href="terms/{lang}.html">利用規約</a></li>
+  <li><a href="/privacy/{lang}.html">プライバシーポリシー</a></li>
+  <li><a href="/terms/{lang}.html">利用規約</a></li>
 </ul>""",
     "ko": """<h1>지원</h1>
 <p>그림판을 이용해 주셔서 감사합니다. 모든 문의는 영업일 기준 15일 이내에 답변드립니다.</p>
@@ -259,8 +274,8 @@ network connection.</p>
 사용할 수 있습니다.</p>
 <h2>법적 고지</h2>
 <ul>
-  <li><a href="privacy/{lang}.html">개인정보 처리방침</a></li>
-  <li><a href="terms/{lang}.html">이용약관</a></li>
+  <li><a href="/privacy/{lang}.html">개인정보 처리방침</a></li>
+  <li><a href="/terms/{lang}.html">이용약관</a></li>
 </ul>""",
 }
 
@@ -361,14 +376,14 @@ def page(title: str, body: str, lang: str, path_prefix: str) -> str:
   <h1>{html.escape(title)}</h1>
   <p style="color:var(--muted);margin:0">{html.escape(name)}</p>
   <nav class="langs">
-    {"".join(f'<a href="../../{path_prefix}/{s}.html" aria-current="{"page" if s == lang else "false"}">{html.escape(nm)}</a>' for s, nm in LOCALE_MAP.values())}
+    {"".join(f'<a href="/{path_prefix}/{s}.html" aria-current="{"page" if s == lang else "false"}">{html.escape(nm)}</a>' for s, nm in LOCALE_MAP.values())}
   </nav>
 </header>
 <main>
 {body}
 </main>
 <footer>
-  <a href="../index.html">{html.escape(BACK_TO_SUPPORT[lang])}</a>
+  <a href="/">{html.escape(BACK_TO_SUPPORT[lang])}</a>
 </footer>
 </div>
 </body>
@@ -437,7 +452,7 @@ def build(out: pathlib.Path, arb_dir: pathlib.Path) -> None:
         # 现在 href 用 s、aria-current 只给当前语言 —— 隐私/条款页（第 264 行）
         # 从一开始就是对的，只有支持页这一处漏了。
         nav = "".join(
-            f'<a href="{s}.html" aria-current="{"page" if s == lang else "false"}">'
+            f'<a href="/{s}.html" aria-current="{"page" if s == lang else "false"}">'
             f'{html.escape(nm)}</a>'
             for s, nm in LOCALE_MAP.values())
         doc = f"""<!DOCTYPE html>
@@ -468,7 +483,7 @@ def build(out: pathlib.Path, arb_dir: pathlib.Path) -> None:
 
     # ---- 默认首页：按 Accept-Language 跳对应语言；否则列全部 ----
     links = "".join(
-        f'<li><a href="{lang}.html">{html.escape(native)}</a></li>'
+        f'<li><a href="/{lang}.html">{html.escape(native)}</a></li>'
         for lang, native in LOCALE_MAP.values())
     (out / "index.html").write_text(f"""<!DOCTYPE html>
 <html>
