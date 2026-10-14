@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hans">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Drawing Board</title>
+<title>简笔画涂鸦板 · 支持与隐私</title>
+<meta name="description" content="简笔画涂鸦板（Drawing Board）的产品介绍、支持、隐私政策与服务条款。全年龄绘画工具，无需账号，作品只保存在你的设备上。">
+<link rel="icon" href="app/assets/icon.png">
+<meta name="robots" content="index,follow">
 <style>
 :root {
   --ink: #2b2118;
@@ -26,45 +29,101 @@ body {
   font: 17px/1.78 -apple-system, "PingFang SC", "Hiragino Sans",
         "Noto Sans KR", system-ui, sans-serif;
 }
-.wrap { max-width: 720px; margin: 0 auto; }
-header {
-  padding: 44px 0 22px; border-bottom: 2px solid var(--line); margin-bottom: 34px;
-}
-h1 { font-size: 32px; line-height: 1.25; margin: 0 0 10px; letter-spacing: -0.01em; }
-h2 { font-size: 20px; margin: 38px 0 12px; color: var(--accent); }
-h3 { font-size: 16px; margin: 22px 0 6px; font-weight: 700; }
+.wrap { max-width: 760px; margin: 0 auto; }
+header { padding: 44px 0 22px; border-bottom: 2px solid var(--line); margin-bottom: 30px; }
+h1 { font-size: 30px; line-height: 1.25; margin: 0 0 10px; letter-spacing: -0.01em; }
+h2 { font-size: 19px; margin: 36px 0 12px; color: var(--accent); }
 p  { margin: 0 0 16px; }
 ul { margin: 0 0 16px; padding-left: 22px; }
-li { margin-bottom: 10px; }
-b { font-weight: 700; }
+li { margin-bottom: 9px; }
 a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
 a:hover { opacity: .72; }
-nav.langs {
-  display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0;
+
+/* 门户卡片 */
+.hero-link {
+  display: block; margin: 0 0 14px; padding: 22px 24px;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 16px; border-bottom-width: 1px;
+  transition: transform .14s ease, border-color .14s ease;
 }
-nav.langs a {
+.hero-link:hover { transform: translateY(-2px); border-color: var(--accent); opacity: 1; }
+.hero-link .t { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.hero-link .d { font-size: 15px; color: var(--muted); line-height: 1.6; }
+
+/* 语言按钮组 */
+.langs { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 8px; }
+.langs a {
   border: 1px solid var(--line); background: var(--card);
   padding: 6px 14px; border-radius: 999px; font-size: 15px;
   border-bottom-width: 1px;
 }
-nav.langs a[aria-current="page"] {
-  background: var(--accent); color: #fff; border-color: var(--accent);
+.langs a[aria-current="page"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.doc-list { list-style: none; padding: 0; margin: 0 0 8px; }
+.doc-list li {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--line); margin: 0;
 }
+.doc-list span { font-size: 14.5px; color: var(--muted); }
+
 footer {
-  margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line);
+  margin-top: 52px; padding-top: 22px; border-top: 1px solid var(--line);
   color: var(--muted); font-size: 14px;
 }
 footer a { border-bottom: none; }
-@media (max-width: 480px) { h1 { font-size: 26px; } body { font-size: 16px; } }
+@media (max-width: 480px) { h1 { font-size: 25px; } body { font-size: 16px; } .doc-list li { flex-direction: column; gap: 2px; } }
+@media (prefers-reduced-motion: reduce) { .hero-link { transition: none; } }
 </style>
 </head>
 <body>
 <div class="wrap">
-<header><h1>Drawing Board</h1></header>
+
+<header>
+  <h1>简笔画涂鸦板</h1>
+  <p style="color:var(--muted);margin:0">全年龄段的绘画与涂鸦工具 · Drawing Board</p>
+</header>
+
 <main>
-<h2>Support</h2>
-<ul><li><a href="en.html">English</a></li><li><a href="zh-Hans.html">简体中文</a></li><li><a href="zh-Hant.html">繁體中文</a></li><li><a href="ja.html">日本語</a></li><li><a href="ko.html">한국어</a></li></ul>
+  <h2>产品介绍</h2>
+  <a class="hero-link" href="app/">
+    <div class="t">查看完整介绍 →</div>
+    <div class="d">62 张简笔画线稿、自由画、照片涂鸦、每日壁纸与本地画册。附真实界面截图。</div>
+  </a>
+
+  <h2>支持与条款</h2>
+  <p style="color:var(--muted);font-size:15px">
+    选择语言查看对应的支持页、隐私政策与服务条款。
+  </p>
+  <nav class="langs">
+    <a href="zh-Hans.html" aria-current="page">简体中文</a>
+    <a href="zh-Hant.html">繁體中文</a>
+    <a href="en.html">English</a>
+    <a href="ja.html">日本語</a>
+    <a href="ko.html">한국어</a>
+  </nav>
+
+  <ul class="doc-list">
+    <li><a href="privacy/zh-Hans.html">隐私政策</a> <span>简体中文</span></li>
+    <li><a href="privacy/zh-Hant.html">隱私政策</a> <span>繁體中文</span></li>
+    <li><a href="privacy/en.html">Privacy Policy</a> <span>English</span></li>
+    <li><a href="privacy/ja.html">プライバシーポリシー</a> <span>日本語</span></li>
+    <li><a href="privacy/ko.html">개인정보 처리방침</a> <span>한국어</span></li>
+  </ul>
+
+  <ul class="doc-list" style="margin-top:26px">
+    <li><a href="terms/zh-Hans.html">服务条款</a> <span>简体中文</span></li>
+    <li><a href="terms/zh-Hant.html">服務條款</a> <span>繁體中文</span></li>
+    <li><a href="terms/en.html">Terms of Service</a> <span>English</span></li>
+    <li><a href="terms/ja.html">利用規約</a> <span>日本語</span></li>
+    <li><a href="terms/ko.html">이용약관</a> <span>한국어</span></li>
+  </ul>
 </main>
+
+<footer>
+  <p><a href="app/">产品官网</a> · <a href="https://apps.apple.com/app/id1501497099">App Store</a></p>
+  <p>联系邮箱：<a href="mailto:yanoutech@163.com">yanoutech@163.com</a></p>
+</footer>
+
 </div>
 </body>
 </html>
