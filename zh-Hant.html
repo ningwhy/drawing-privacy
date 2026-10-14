@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>支援 · 簡筆畫塗鴉板</title>
+<style>
+:root {
+  --ink: #2b2118;
+  --muted: #6b5d4d;
+  --line: #e6dccd;
+  --accent: #e8622d;
+  --bg: #fffaf1;
+  --card: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #f0e8dc; --muted: #b3a595; --line: #3a3129;
+    --accent: #ff8a52; --bg: #1a1611; --card: #241f19;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 0 20px 72px;
+  background: var(--bg); color: var(--ink);
+  font: 17px/1.78 -apple-system, "PingFang SC", "Hiragino Sans",
+        "Noto Sans KR", system-ui, sans-serif;
+}
+.wrap { max-width: 720px; margin: 0 auto; }
+header {
+  padding: 44px 0 22px; border-bottom: 2px solid var(--line); margin-bottom: 34px;
+}
+h1 { font-size: 32px; line-height: 1.25; margin: 0 0 10px; letter-spacing: -0.01em; }
+h2 { font-size: 20px; margin: 38px 0 12px; color: var(--accent); }
+p  { margin: 0 0 16px; }
+ul { margin: 0 0 16px; padding-left: 22px; }
+li { margin-bottom: 10px; }
+b { font-weight: 700; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
+a:hover { opacity: .72; }
+nav.langs {
+  display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0;
+}
+nav.langs a {
+  border: 1px solid var(--line); background: var(--card);
+  padding: 6px 14px; border-radius: 999px; font-size: 15px;
+  border-bottom-width: 1px;
+}
+nav.langs a[aria-current="page"] {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+footer {
+  margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 14px;
+}
+footer a { border-bottom: none; }
+@media (max-width: 480px) { h1 { font-size: 26px; } body { font-size: 16px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>支援</h1>
+  <p style="color:var(--muted);margin:0">簡筆畫塗鴉板</p>
+  <nav class="langs"><a href="zh-Hant.html" aria-current="page">English</a><a href="zh-Hant.html" aria-current="page">简体中文</a><a href="zh-Hant.html" aria-current="page">繁體中文</a><a href="zh-Hant.html" aria-current="page">日本語</a><a href="zh-Hant.html" aria-current="page">한국어</a></nav>
+</header>
+<main>
+<h1>支援</h1>
+<p>感謝使用簡筆畫塗鴉板。我們會在 15 個工作天內回覆每一則訊息。</p>
+<h2>傳訊息之前</h2>
+<ul>
+  <li><b>照片選不上？</b> 開啟一次 App，再到「設定 › 隱私 › 照片」授權。
+      權限只在你點擊時才會詢問。</li>
+  <li><b>VIP 沒恢復？</b> 點 VIP 按鈕，選「恢復購買」。購買紀錄綁定的是你的 Apple 帳號，
+      而非這台裝置。</li>
+  <li><b>作品不見了？</b> 作品只存在本機，移除 App 會一併刪除，
+      想保留的請先匯出。</li>
+</ul>
+<h2>聯絡方式</h2>
+<p>請透過 App Store 商品頁的聯絡入口提交回饋，並附上裝置型號、iOS 版本，
+以及重現問題的步驟。若涉及購買，請附上訂單編號。</p>
+<h2>法律條款</h2>
+<ul>
+  <li><a href="privacy/zh-Hant.html">隱私權政策</a></li>
+  <li><a href="terms/zh-Hant.html">服務條款</a></li>
+</ul>
+</main>
+<footer>&copy; 2026 簡筆畫塗鴉板</footer>
+</div>
+</body>
+</html>

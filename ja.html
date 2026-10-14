@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>サポート · おえかきボード</title>
+<style>
+:root {
+  --ink: #2b2118;
+  --muted: #6b5d4d;
+  --line: #e6dccd;
+  --accent: #e8622d;
+  --bg: #fffaf1;
+  --card: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #f0e8dc; --muted: #b3a595; --line: #3a3129;
+    --accent: #ff8a52; --bg: #1a1611; --card: #241f19;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 0 20px 72px;
+  background: var(--bg); color: var(--ink);
+  font: 17px/1.78 -apple-system, "PingFang SC", "Hiragino Sans",
+        "Noto Sans KR", system-ui, sans-serif;
+}
+.wrap { max-width: 720px; margin: 0 auto; }
+header {
+  padding: 44px 0 22px; border-bottom: 2px solid var(--line); margin-bottom: 34px;
+}
+h1 { font-size: 32px; line-height: 1.25; margin: 0 0 10px; letter-spacing: -0.01em; }
+h2 { font-size: 20px; margin: 38px 0 12px; color: var(--accent); }
+p  { margin: 0 0 16px; }
+ul { margin: 0 0 16px; padding-left: 22px; }
+li { margin-bottom: 10px; }
+b { font-weight: 700; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
+a:hover { opacity: .72; }
+nav.langs {
+  display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 0;
+}
+nav.langs a {
+  border: 1px solid var(--line); background: var(--card);
+  padding: 6px 14px; border-radius: 999px; font-size: 15px;
+  border-bottom-width: 1px;
+}
+nav.langs a[aria-current="page"] {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+footer {
+  margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 14px;
+}
+footer a { border-bottom: none; }
+@media (max-width: 480px) { h1 { font-size: 26px; } body { font-size: 16px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>サポート</h1>
+  <p style="color:var(--muted);margin:0">おえかきボード</p>
+  <nav class="langs"><a href="ja.html" aria-current="page">English</a><a href="ja.html" aria-current="page">简体中文</a><a href="ja.html" aria-current="page">繁體中文</a><a href="ja.html" aria-current="page">日本語</a><a href="ja.html" aria-current="page">한국어</a></nav>
+</header>
+<main>
+<h1>サポート</h1>
+<p>おえかきボードをご利用いただきありがとうございます。すべてのご連絡に 15 営業日以内にご返信します。</p>
+<h2>お問い合わせの前に</h2>
+<ul>
+  <li><b>写真を選べない場合</b>：一度アプリを開き、「設定 › プライバシー › 写真」で許可してください。
+      権限はタップした時点でしか要求されません。</li>
+  <li><b>VIP が復元されない場合</b>：VIP ボタンをタップし「購入を復元」を選んでください。
+      購入は端末ではなく Apple アカウントに紐づいています。</li>
+  <li><b>作品が見つからない場合</b>：作品は端末内にのみ保存されます。
+      アプリを削除すると同時に消えるため、残したいものは先に書き出してください。</li>
+</ul>
+<h2>お問い合わせ</h2>
+<p>App Store の作品ページからご連絡ください。機種、iOS のバージョン、
+再現手順をお添えください。購入に関する問題の場合は注文番号もお願いします。</p>
+<h2>法的情報</h2>
+<ul>
+  <li><a href="privacy/ja.html">プライバシーポリシー</a></li>
+  <li><a href="terms/ja.html">利用規約</a></li>
+</ul>
+</main>
+<footer>&copy; 2026 おえかきボード</footer>
+</div>
+</body>
+</html>

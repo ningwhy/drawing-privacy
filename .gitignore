@@ -1,0 +1,5 @@
+# Cloudflare Pages 本地/临时产物
+.wrangler/
+.DS_Store
+
+# 但保留 _headers / 404.html —— 那是部署必需的配置与页面
