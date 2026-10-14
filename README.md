@@ -38,11 +38,17 @@ tool/shots/build_legal_site.py   法务站生成器
 产品图为 `App Store 截图流水线`产出的**真实模拟器截图**（缩放到 900px 宽、已去 alpha）。
 ⚠️ 禁止用 CSS/HTML 伪造 App UI。
 
+⚠️ **链接一律用站点根绝对路径**（`/privacy/…`、`/terms/…`、`/app/…`、`/`），
+不要用 `../../` 或 `app/` 这类相对路径 —— 相对路径依赖尾斜杠，
+用户从 `/terms`（无斜杠）进入时 `../` 会解析到域外。
+`og:image` / `og:url` / `canonical` 必须是**完整绝对 URL**，
+社交平台爬取时不保证带尾斜杠，相对路径会导致分享卡片无图。
+
 重新生成官网素材：
 
 ```bash
 # 从 children_drawing 工程的 marketing/raw/ 复制并压缩
-# iPhone 首页图曾出现空白帧(pixel sd=0)，必须先校验再入库
+# ⚠️ iPhone 首页图曾出现空白帧(pixel sd=0)，必须先校验再入库
 python3 -c "
 from PIL import Image
 im = Image.open('raw.png').convert('L')
@@ -57,11 +63,13 @@ print('sd =', (sum((v-m)**2 for v in px[::37])/len(px[::37]))**0.5)
 由 `build_legal_site.py` 生成，**不要手改生成物**：
 
 ```bash
-python3 tool/shots/build_legal_site.py
+# ARB 是唯一内容源，在 Flutter 工程里
+python3 tool/shots/build_legal_site.py --out . \
+        --arb /Users/bot/Documents/App/children_drawing/l10n
 ```
 
 脚本自带自检（非法 UTF-8 字节、U+FFFD 替换字符、占位符未替换）。
-改内容请改脚本里的文案源。
+改内容请改脚本里的文案源；改链接请改脚本里的模板（不要改生成物）。
 
 ## 验收
 
@@ -96,11 +104,29 @@ wrangler pages deploy . --project-name=drawing-privacy --branch=main
 
 ### 接到自定义域
 
-官网与法务站同域时，`supportUrl` 填 `https://<域名>/`，
-`privacyPolicyUrl` 填 `https://<域名>/privacy/zh-Hans.html`，
-`marketingUrl` 填 `https://<域名>/app/`。
+本项目正式域名：**`https://drawing-privacy.pages.dev`**
 
-部署后需回填 ASC（当前全部为 null 或指向已失效的 Facebook 主页）。
+| URL | 指向 |
+|---|---|
+| `https://drawing-privacy.pages.dev/` | 门户页 ← `supportUrl` |
+| `https://drawing-privacy.pages.dev/app/` | 产品官网 ← `marketingUrl` |
+| `https://drawing-privacy.pages.dev/privacy/zh-Hans.html` | 隐私政策 ← `privacyPolicyUrl` |
+| `https://drawing-privacy.pages.dev/terms/zh-Hans.html` | 服务条款 |
+
+部署后需回填 ASC。**当前 ASC 状态全是错的，必须改：**
+
+| ASC 字段 | 当前值 | 应改为 |
+|---|---|---|
+| `appInfoLocalizations.supportUrl` | `null`（7 个 locale 全空） | `https://drawing-privacy.pages.dev/<locale>.html` |
+| `appInfoLocalizations.privacyPolicyUrl` | `s.orzjun.com/.../baby_stick_figure_service_protocol.html`（原 App 遗留，正文写的是「服务协议」且含账号密码，本 App 无账号系统） | `https://drawing-privacy.pages.dev/privacy/<locale>.html` |
+| `appStoreVersionLocalizations.supportUrl` | `https://www.facebook.com/Jingqi-103004027902475`（遗留） | 同上 |
+| `appStoreVersionLocalizations.privacyPolicyUrl` | `null` | 同上 |
+| `appInfoLocalizations.marketingUrl` | `null` | `https://drawing-privacy.pages.dev/app/` |
+
+⚠️ 注意 ASC 有**两套** URL 字段：`appInfoLocalizations`（App 级）与
+`appStoreVersionLocalizations`（版本级），**都要填**，只填一套审核仍会看到旧值。
+
+⚠️ 关键词里的儿童定位词（`兒童畫`/`親子`/`子供`/`아이`）也要同步清掉。
 
 ## 内容合规约束（修改前必读）
 
