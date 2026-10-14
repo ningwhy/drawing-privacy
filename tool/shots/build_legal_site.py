@@ -78,9 +78,31 @@ SUPPORT_HTML = {
       deletes it, so export anything you want to keep.</li>
 </ul>
 <h2>Contact</h2>
-<p>Use the contact form on the App Store product page. Please include your device model,
-iOS version, and the steps that reproduce the problem. If the issue involves a purchase,
-include the order ID.</p>
+<p>Email <a href="mailto:{email}">{email}</a>, or use the contact form on the App Store
+product page. Please include your device model, iOS version, and the steps that
+reproduce the problem. If the issue involves a purchase, include the order ID.</p>
+<h2>Frequently asked questions</h2>
+<h3>Do I need an account to use Drawing Board?</h3>
+<p>No. There is no sign-up and no account. Open the app and start drawing.</p>
+<h3>Where is my artwork stored?</h3>
+<p>Only on this device. Nothing is uploaded to a server. Uninstalling the app
+permanently deletes your artwork, so export anything you want to keep.</p>
+<h3>Are my photos uploaded anywhere?</h3>
+<p>No. Photo doodling runs entirely on your device, and the photo is never
+transmitted or stored by us.</p>
+<h3>What does VIP include?</h3>
+<p>VIP unlocks every colouring page: 4 line drawings are free, and the remaining
+58 come with VIP. Free drawing, photo doodling, wallpapers, and saving to your
+gallery are free and unlimited for everyone.</p>
+<h3>How do I restore a purchase?</h3>
+<p>Tap the VIP button, then use Restore Purchases. Your purchase is tied to your
+Apple Account, so it restores on any device you sign in to.</p>
+<h3>Which languages are supported?</h3>
+<p>The interface is available in English, Simplified Chinese, Traditional Chinese,
+Japanese, and Korean.</p>
+<h3>Does the app work offline?</h3>
+<p>Yes. Colouring, free drawing, photo doodling, and wallpapers all work without a
+network connection.</p>
 <h2>Legal</h2>
 <ul>
   <li><a href="privacy/{lang}.html">Privacy Policy</a></li>
@@ -98,8 +120,26 @@ include the order ID.</p>
       想保留的请先导出。</li>
 </ul>
 <h2>联系方式</h2>
-<p>请通过 App Store 商品页的联系入口提交反馈，附上设备型号、iOS 版本，
-以及复现问题的步骤。如果涉及购买，请附上订单号。</p>
+<p>发邮件到 <a href="mailto:{email}">{email}</a>，或通过 App Store 商品页的联系入口提交。
+请附上设备型号、iOS 版本，以及复现问题的步骤。如果涉及购买，请附上订单号。</p>
+<h2>常见问题</h2>
+<h3>需要注册账号吗？</h3>
+<p>不需要。没有注册，也没有账号，打开 App 就能直接画。</p>
+<h3>我的作品存在哪里？</h3>
+<p>只存在这台设备上，不会上传到任何服务器。卸载 App 会永久删除作品，
+想保留的请先导出。</p>
+<h3>我的照片会被上传吗？</h3>
+<p>不会。照片涂鸦完全在本机运行，照片既不传输也不由我们存储。</p>
+<h3>VIP 包含哪些内容？</h3>
+<p>VIP 解锁全部填色线稿：其中 4 张免费，其余 58 张需要 VIP。
+自由画、照片涂鸦、每日壁纸，以及保存到画册，全部免费且不限次数。</p>
+<h3>怎么恢复购买？</h3>
+<p>点 VIP 按钮，选「恢复购买」。购买绑定的是你的 Apple 账户，
+换设备登录同一账户即可恢复。</p>
+<h3>支持哪些语言？</h3>
+<p>界面支持英文、简体中文、繁體中文、日本語、한국어 五种语言。</p>
+<h3>可以离线使用吗？</h3>
+<p>可以。填色、自由画、照片涂鸦和壁纸都不需要联网。</p>
 <h2>法律条款</h2>
 <ul>
   <li><a href="privacy/{lang}.html">隐私政策</a></li>
@@ -117,8 +157,26 @@ include the order ID.</p>
       想保留的請先匯出。</li>
 </ul>
 <h2>聯絡方式</h2>
-<p>請透過 App Store 商品頁的聯絡入口提交回饋，並附上裝置型號、iOS 版本，
-以及重現問題的步驟。若涉及購買，請附上訂單編號。</p>
+<p>寄信到 <a href="mailto:{email}">{email}</a>，或透過 App Store 商品頁的聯絡入口提交。
+請附上裝置型號、iOS 版本，以及重現問題的步驟。若涉及購買，請附上訂單編號。</p>
+<h2>常見問題</h2>
+<h3>需要註冊帳號嗎？</h3>
+<p>不需要。沒有註冊，也沒有帳號，開啟 App 就能直接畫。</p>
+<h3>我的作品存在哪裡？</h3>
+<p>只存在這台裝置上，不會上傳到任何伺服器。移除 App 會永久刪除作品，
+想保留的請先匯出。</p>
+<h3>我的照片會被上傳嗎？</h3>
+<p>不會。照片塗鴉完全在本機執行，照片既不傳輸也不由我們儲存。</p>
+<h3>VIP 包含哪些內容？</h3>
+<p>VIP 解鎖全部填色線稿：其中 4 張免費，其餘 58 張需要 VIP。
+自由畫、照片塗鴉、每日桌布，以及儲存到畫冊，全部免費且不限次數。</p>
+<h3>怎麼恢復購買？</h3>
+<p>點 VIP 按鈕，選「恢復購買」。購買綁定的是你的 Apple 帳號，
+換裝置登入同一帳號即可恢復。</p>
+<h3>支援哪些語言？</h3>
+<p>介面支援英文、簡體中文、繁體中文、日本語、한국어 五種語言。</p>
+<h3>可以離線使用嗎？</h3>
+<p>可以。填色、自由畫、照片塗鴉和桌布都不需要連網。</p>
 <h2>法律條款</h2>
 <ul>
   <li><a href="privacy/{lang}.html">隱私權政策</a></li>
@@ -136,8 +194,27 @@ include the order ID.</p>
       アプリを削除すると同時に消えるため、残したいものは先に書き出してください。</li>
 </ul>
 <h2>お問い合わせ</h2>
-<p>App Store の作品ページからご連絡ください。機種、iOS のバージョン、
-再現手順をお添えください。購入に関する問題の場合は注文番号もお願いします。</p>
+<p><a href="mailto:{email}">{email}</a> までメールいただくか、App Store の作品ページから
+ご連絡ください。機種、iOS のバージョン、再現手順をお添えください。
+購入に関する問題の場合は注文番号もお願いします。</p>
+<h2>よくある質問</h2>
+<h3>アカウント登録は必要ですか？</h3>
+<p>不要です。登録もアカウントもありません。アプリを開いてすぐ描けます。</p>
+<h3>作品はどこに保存されますか？</h3>
+<p>この端末内にのみ保存され、サーバーにはアップロードされません。アプリを削除すると
+同時に消えるため、残したいものは先に書き出してください。</p>
+<h3>写真はアップロードされますか？</h3>
+<p>されません。写真へのドラッグは端末内で処理され、写真は送信も保存もされません。</p>
+<h3>VIP には何が含まれますか？</h3>
+<p>全ての塗り絵ページが対象です。無料は 4 枚で、残り 58 枚は VIP が必要です。
+自由描画・写真へのドラッグ・壁紙・ギャラリーへの保存は、利用 者全員에게無料で回数制限はありません。</p>
+<h3>購入の復元はどうしますか？</h3>
+<p>VIP ボタンをタップし「購入を復元」を選んでください。購入は Apple アカウントに
+紐づいているため、どの端末にログインしても復元されます。</p>
+<h3>対応言語は何ですか？</h3>
+<p>英語、簡体字中国語、繁体字中国語、日本語、한국어 の 5 言語です。</p>
+<h3>オフラインで使えますか？</h3>
+<p>はい。塗り絵、自由描画、写真へのドラッグ、壁紙はいずれも通信不要です。</p>
 <h2>法的情報</h2>
 <ul>
   <li><a href="privacy/{lang}.html">プライバシーポリシー</a></li>
@@ -156,8 +233,30 @@ include the order ID.</p>
       앱을 삭제하면 함께 삭제되므로 보관할 작품은 먼저 내보내세요.</li>
 </ul>
 <h2>연락처</h2>
-<p>App Store 상품 페이지의 연락 양식을 이용해 주세요. 기기 모델, iOS 버전,
-문제가 발생하는 절차를 함께 적어 주세요. 구매 관련 문의는 주문 번호도 필요합니다.</p>
+<p><a href="mailto:{email}">{email}</a> 로 이메일을 보내거나 App Store 상품 페이지의
+연락 양식을 이용해 주세요. 기기 모델, iOS 버전, 문제가 발생하는 절차를 함께 적어 주세요.
+구매 관련 문의는 주문 번호도 필요합니다.</p>
+<h2>자주 묻는 질문</h2>
+<h3>계정 가입이 필요한가요?</h3>
+<p>필요하지 않습니다. 가입도 계정도 없으며, 앱을 열고 바로 그릴 수 있습니다.</p>
+<h3>제 작품은 어디에 저장되나요?</h3>
+<p>이 기기에만 저장되며 서버로 업로드되지 않습니다. 앱을 삭제하면 작품도 함께
+삭제되므로, 보관할 작품은 먼저 내보내세요.</p>
+<h3>제 사진이 업로드되나요?</h3>
+<p>업로드되지 않습니다. 사진 드로잉은 전부 기기 안에서 처리되며, 사진은 전송되거나
+저장되지 않습니다.</p>
+<h3>VIP에는 무엇이 포함되나요?</h3>
+<p>모든 색칠 페이지가 해당됩니다. 4장은 무료이고 나머지 58장은 VIP가 필요합니다.
+자유 드로잉, 사진 드로잉, 배경화면, 갤러리 저장은 모두 무료이며 횟수 제한도
+없습니다.</p>
+<h3>구매는 어떻게 복원하나요?</h3>
+<p>VIP 버튼을 누른 뒤 「구매 복원」을 선택하세요. 구매는 Apple 계정에 연결되어
+어떤 기기에서 로그인해도 복원됩니다.</p>
+<h3>지원하는 언어는 무엇인가요?</h3>
+<p>영어, 중국어 간체, 중국어 번체, 일본어, 한국어 총 5개 언어를 지원합니다.</p>
+<h3>오프라인으로 사용할 수 있나요?</h3>
+<p>가능합니다. 색칠, 자유 드로잉, 사진 드로잉, 배경화면 모두 인터넷 연결 없이
+사용할 수 있습니다.</p>
 <h2>법적 고지</h2>
 <ul>
   <li><a href="privacy/{lang}.html">개인정보 처리방침</a></li>
@@ -193,6 +292,7 @@ header {
 }
 h1 { font-size: 32px; line-height: 1.25; margin: 0 0 10px; letter-spacing: -0.01em; }
 h2 { font-size: 20px; margin: 38px 0 12px; color: var(--accent); }
+h3 { font-size: 16px; margin: 22px 0 6px; font-weight: 700; }
 p  { margin: 0 0 16px; }
 ul { margin: 0 0 16px; padding-left: 22px; }
 li { margin-bottom: 10px; }
@@ -329,15 +429,23 @@ def build(out: pathlib.Path, arb_dir: pathlib.Path) -> None:
             encoding="utf-8")
 
         # ---- 支持页 ----
-        body = SUPPORT_HTML[lang].format(lang=lang)
+        body = SUPPORT_HTML[lang].format(lang=lang, email=SUPPORT_EMAIL)
+        # ⚠️ 2026-10-14 修：原来这里写的是 `href="{lang}.html"`，
+        # 用的是**外层循环变量 lang**（当前语言）而不是循环项 s，
+        # 于是 5 个语言按钮的 href 全指向当前页自己，
+        # 且 5 个都带 aria-current="page"。实测 en.html 里 5 个 <a> 全是 en.html。
+        # 现在 href 用 s、aria-current 只给当前语言 —— 隐私/条款页（第 264 行）
+        # 从一开始就是对的，只有支持页这一处漏了。
         nav = "".join(
-            f'<a href="{lang}.html" aria-current="page">{html.escape(nm)}</a>'
+            f'<a href="{s}.html" aria-current="{"page" if s == lang else "false"}">'
+            f'{html.escape(nm)}</a>'
             for s, nm in LOCALE_MAP.values())
         doc = f"""<!DOCTYPE html>
 <html lang="{lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="{html.escape(SUPPORT_DESC[lang])}">
 <title>{html.escape(SUPPORT_TITLE[lang])} · {html.escape(APP_NAME[lang])}</title>
 <style>{CSS}</style>
 </head>
@@ -402,6 +510,20 @@ SUPPORT_TITLE = {
     "ja": "サポート",
     "ko": "지원",
 }
+
+# meta description —— 搜索结果与浏览器标签页摘要
+SUPPORT_DESC = {
+    "en": "Support for Drawing Board: frequently asked questions about the free "
+          "features, VIP, photo doodling, and where your artwork is stored.",
+    "zh-Hans": "简笔画涂鸦板支持：免费功能、VIP、照片涂鸦与作品存储位置的常见问题解答。",
+    "zh-Hant": "簡筆畫塗鴉板支援：免費功能、VIP、照片塗鴉與作品儲存位置的常見問題解答。",
+    "ja": "おえかきボードのサポート：無料機能、VIP、写真へのドoodle、作品の保存場所に関するよくある質問。",
+    "ko": "만화보드 지원: 무료 기능, VIP, 사진 위 드로잉, 작품 저장 위치에 대한 자주 묻는 질문.",
+}
+
+# ⚠️ 必须与 App Store Connect 里的 Support URL 联系方式保持一致（审核时会核对）。
+# 与 Sakinah / Lune 共用同一个开发邮箱。
+SUPPORT_EMAIL = "yanoutech@163.com"
 
 
 def main() -> None:
