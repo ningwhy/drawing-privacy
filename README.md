@@ -4,45 +4,52 @@
 
 | 路径 | 内容 | ASC 对应字段 |
 |---|---|---|
-| `/app/` | 产品介绍官网 | `marketingUrl` |
-| `/` | 门户页（官网入口 + 五语种法务导航） | `supportUrl` |
+| `/` | **产品介绍官网** | `marketingUrl` |
+| `/support/` | 支持门户（五语种导航） | `supportUrl` |
 | `/privacy/<locale>.html` | 隐私政策 | `privacyPolicyUrl` |
 | `/terms/<locale>.html` | 服务条款 | App 内链接 |
-| `/<locale>.html` | 支持页 | — |
+| `/support/<locale>.html` | 支持页 | — |
 
 `locale` ∈ `zh-Hans` · `zh-Hant` · `en` · `ja` · `ko`
 
 ## 文件结构
 
 ```
-index.html              门户页 ← supportUrl 指向这里
-app/                    产品介绍官网（官网唯一手写源）
-  index.html
-  style.css
-  assets/icon.png       App 图标
-  assets/shots/*.png    真实模拟器截图（非伪造 UI）
-404.html                未找到页
-en|zh-Hans|zh-Hant|ja|ko.html   支持页各语种
+index.html              产品官网（手写，根路径）  ← marketingUrl
+style.css               官网样式（手写）
+assets/icon.png         App 图标
+assets/shots/*.png      真实模拟器截图（非伪造 UI）
+support/
+  index.html            支持门户（手写）        ← supportUrl
+  <locale>.html         支持页（生成物）
 privacy/<locale>.html   隐私政策（生成物）
 terms/<locale>.html     服务条款（生成物）
+404.html                未找到页
 _headers                Cloudflare Pages 安全响应头
 tool/shots/build_legal_site.py   法务站生成器
 ```
+
+⚠️ **`build_legal_site.py` 不得生成根 `index.html`** —— 那是官网，
+一旦被覆盖会变成语言选择页。脚本里已移除该逻辑并写了注释钉死。
 
 ## 构建
 
 ### 官网页面
 
-`app/` 下三个文件是**手写源**，直接改即可：零外部资源、纯 HTML/CSS。
+`index.html` + `style.css` + `assets/` 是**手写源**，直接改即可：零外部资源、纯 HTML/CSS。
 
 产品图为 `App Store 截图流水线`产出的**真实模拟器截图**（缩放到 900px 宽、已去 alpha）。
 ⚠️ 禁止用 CSS/HTML 伪造 App UI。
 
-⚠️ **链接一律用站点根绝对路径**（`/privacy/…`、`/terms/…`、`/app/…`、`/`），
-不要用 `../../` 或 `app/` 这类相对路径 —— 相对路径依赖尾斜杠，
+⚠️ **跨目录链接一律用站点根绝对路径**（`/privacy/…`、`/terms/…`、`/support/…`、`/`），
+不要用 `../../` 或 `support/` 这类相对路径 —— 相对路径依赖尾斜杠，
 用户从 `/terms`（无斜杠）进入时 `../` 会解析到域外。
+
+官网页内**同目录**资源（`assets/…`、`style.css`）用相对路径即可，
+因为官网固定从 `/` 进入，不存在层级歧义。
+
 `og:image` / `og:url` / `canonical` 必须是**完整绝对 URL**，
-社交平台爬取时不保证带尾斜杠，相对路径会导致分享卡片无图。
+社交平台爬取时只给 origin，相对路径会导致分享卡片无图。
 
 重新生成官网素材：
 
@@ -81,7 +88,7 @@ python3 -m http.server 8898 &
 kill %1
 ```
 
-当前基线：**18 个页面 / 130 条链接，全部 200**。
+当前基线：**18 个页面 / 136 条链接，全部 200**（含从无尾斜杠 URL 进入的场景）。
 
 ## 部署（Cloudflare Pages）
 
@@ -108,8 +115,8 @@ wrangler pages deploy . --project-name=drawing-privacy --branch=main
 
 | URL | 指向 |
 |---|---|
-| `https://drawing-privacy.pages.dev/` | 门户页 ← `supportUrl` |
-| `https://drawing-privacy.pages.dev/app/` | 产品官网 ← `marketingUrl` |
+| `https://drawing-privacy.pages.dev/` | 产品官网 ← `marketingUrl` |
+| `https://drawing-privacy.pages.dev/support/` | 支持门户 ← `supportUrl` |
 | `https://drawing-privacy.pages.dev/privacy/zh-Hans.html` | 隐私政策 ← `privacyPolicyUrl` |
 | `https://drawing-privacy.pages.dev/terms/zh-Hans.html` | 服务条款 |
 
@@ -117,11 +124,11 @@ wrangler pages deploy . --project-name=drawing-privacy --branch=main
 
 | ASC 字段 | 当前值 | 应改为 |
 |---|---|---|
-| `appInfoLocalizations.supportUrl` | `null`（7 个 locale 全空） | `https://drawing-privacy.pages.dev/<locale>.html` |
+| `appInfoLocalizations.supportUrl` | `null`（7 个 locale 全空） | `https://drawing-privacy.pages.dev/support/<locale>.html` |
 | `appInfoLocalizations.privacyPolicyUrl` | `s.orzjun.com/.../baby_stick_figure_service_protocol.html`（原 App 遗留，正文写的是「服务协议」且含账号密码，本 App 无账号系统） | `https://drawing-privacy.pages.dev/privacy/<locale>.html` |
 | `appStoreVersionLocalizations.supportUrl` | `https://www.facebook.com/Jingqi-103004027902475`（遗留） | 同上 |
 | `appStoreVersionLocalizations.privacyPolicyUrl` | `null` | 同上 |
-| `appInfoLocalizations.marketingUrl` | `null` | `https://drawing-privacy.pages.dev/app/` |
+| `appInfoLocalizations.marketingUrl` | `null` | `https://drawing-privacy.pages.dev/` |
 
 ⚠️ 注意 ASC 有**两套** URL 字段：`appInfoLocalizations`（App 级）与
 `appStoreVersionLocalizations`（版本级），**都要填**，只填一套审核仍会看到旧值。

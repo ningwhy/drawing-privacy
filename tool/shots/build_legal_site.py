@@ -383,7 +383,7 @@ def page(title: str, body: str, lang: str, path_prefix: str) -> str:
 {body}
 </main>
 <footer>
-  <a href="/">{html.escape(BACK_TO_SUPPORT[lang])}</a>
+  <a href="/support/">{html.escape(BACK_TO_SUPPORT[lang])}</a>
 </footer>
 </div>
 </body>
@@ -421,6 +421,7 @@ def scan_corruption(out: pathlib.Path) -> list[str]:
 def build(out: pathlib.Path, arb_dir: pathlib.Path) -> None:
     (out / "privacy").mkdir(parents=True, exist_ok=True)
     (out / "terms").mkdir(parents=True, exist_ok=True)
+    (out / "support").mkdir(parents=True, exist_ok=True)
 
     for suffix, (lang, native) in LOCALE_MAP.items():
         arb = load_arb(arb_dir, suffix)
@@ -452,7 +453,7 @@ def build(out: pathlib.Path, arb_dir: pathlib.Path) -> None:
         # 现在 href 用 s、aria-current 只给当前语言 —— 隐私/条款页（第 264 行）
         # 从一开始就是对的，只有支持页这一处漏了。
         nav = "".join(
-            f'<a href="/{s}.html" aria-current="{"page" if s == lang else "false"}">'
+            f'<a href="/support/{s}.html" aria-current="{"page" if s == lang else "false"}">'
             f'{html.escape(nm)}</a>'
             for s, nm in LOCALE_MAP.values())
         doc = f"""<!DOCTYPE html>
@@ -479,31 +480,17 @@ def build(out: pathlib.Path, arb_dir: pathlib.Path) -> None:
 </body>
 </html>
 """
-        (out / f"{lang}.html").write_text(doc, encoding="utf-8")
+        (out / "support" / f"{lang}.html").write_text(doc, encoding="utf-8")
 
-    # ---- 默认首页：按 Accept-Language 跳对应语言；否则列全部 ----
-    links = "".join(
-        f'<li><a href="/{lang}.html">{html.escape(native)}</a></li>'
-        for lang, native in LOCALE_MAP.values())
-    (out / "index.html").write_text(f"""<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{html.escape(APP_NAME["en"])}</title>
-<style>{CSS}</style>
-</head>
-<body>
-<div class="wrap">
-<header><h1>{html.escape(APP_NAME["en"])}</h1></header>
-<main>
-<h2>Support</h2>
-<ul>{links}</ul>
-</main>
-</div>
-</body>
-</html>
-""", encoding="utf-8")
+    # ---- 根 index.html 已由官网占用，脚本**不得**生成 ----
+    # 站点结构（2026-10-14 起）：
+    #   /                      → 产品官网（手写，app/index.html 移上来）
+    #   /support/index.html    → 支持门户（supportUrl 指向这里）
+    #   /support/<locale>.html → 支持页各语种
+    #   /privacy/<locale>.html → 隐私政策
+    #   /terms/<locale>.html   → 服务条款
+    # ⚠️ 以前这里会生成 index.html 覆盖官网。已移除 ——
+    #    若误恢复，官网会被冲成语言选择页。
 
     # ---- 交付前自检：损坏字节 / 未替换占位必须为 0 ----
     problems = scan_corruption(out)
