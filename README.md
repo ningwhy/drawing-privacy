@@ -38,6 +38,63 @@ tool/shots/build_legal_site.py   法务站生成器
 
 `index.html` + `style.css` + `assets/` 是**手写源**，直接改即可：零外部资源、纯 HTML/CSS。
 
+#### 🔴 事实数字不得写死
+
+`index.html` 里任何「素材数量 / 笔刷种数 / 颜色数」都必须**从
+`tool/site_facts.py` 派生**，不要写字面量。
+
+2026-10-16 实测事故：App Store 上已上架的 1.1 文案写「62 张简笔画」，
+而代码真源 `kSketchLibraryCount` 早已是 72；同一天发现**官网也有 9 处
+写死 62**。两个仓库各有一份互不知情的副本，没有任何东西在看住它 ——
+这正是 Guideline 2.3（元数据与实际功能不符）。
+
+`tool/site_facts.py` 从 children_drawing 的 Dart 源码静态派生：
+
+| 事实 | 源文件 | 解析对象 |
+|---|---|---|
+| 线稿总数 | `sketches.g.dart` | `_library` 顶层列表条目数 |
+| 免费张数 | `feature_gate.dart` | `kFreeSketchCount` |
+| 笔刷种数 | `brushes.dart` | `BrushRegistry.available` |
+| 调色板色数 | `palette.dart` | `kCrayonPalette` |
+
+⚠️ **跨仓库读不到就抛错，绝不退回硬编码** —— 退回硬编码正是漂移的根因。
+跨仓库路径可用环境变量 `DRAWING_FLUTTER_REPO` 覆盖。
+
+#### 🔴 商店链接必须带国家码
+
+2026-10-16 逐变体实测（curl 跟到底看 `url_effective`）：
+
+| 写法 | 桌面浏览器最终落点 |
+|---|---|
+| `apps.apple.com/app/id1501497099` | `apps.apple.com/cn/iphone/today` ← **app id 丢失** |
+| `apps.apple.com/cn/app/id1501497099` | 正确跳到 App 页 |
+| `itunes.apple.com/app/id1501497099` | 同上，丢失 |
+
+iOS 移动 UA 下裸链接还会 301 到 `itms-appss://`（非法 scheme）。
+
+⚠️ 这**不是**「中国区没上架」—— iTunes lookup 显示 cn/us/jp/kr 全都有
+`resultCount=1`。所以正确做法是加国家码前缀，不是换区域。
+
+正确写法：`https://apps.apple.com/cn/app/id1501497099`，
+下载按钮额外加 `?mt=8` 唤起 App Store App。
+
+#### 门禁
+
+```bash
+python3 tool/test_site_facts.py    # 13 条：事实线 / 链接线 / 合规线
+```
+
+判据读 `site_facts.render()` 的输出（即**真正会部署的那份 HTML**），
+不解析源码 —— 第一版用 `script.contains(...)` 结果命中了自己文档里的
+历史说明（记忆铁律：规则命中自己的文档 = 自我短路）。
+
+注入证伪记录：
+
+| 注入 | 结果 |
+|---|---|
+| 官网写回 `62` | ✅ 2 条红 |
+| 下载按钮改回 `href="#get"` + 裸商店链接 | ✅ 2 条红 |
+
 产品图为 `App Store 截图流水线`产出的**真实模拟器截图**（缩放到 900px 宽、已去 alpha）。
 ⚠️ 禁止用 CSS/HTML 伪造 App UI。
 
@@ -88,7 +145,12 @@ python3 -m http.server 8898 &
 kill %1
 ```
 
-当前基线：**18 个页面 / 136 条链接，全部 200**（含从无尾斜杠 URL 进入的场景）。
+当前基线：**18 个页面 / 137 条链接，全部 200**（含从无尾斜杠 URL 进入的场景）。
+
+官网门禁也要跑：
+```bash
+python3 tool/test_site_facts.py
+```
 
 ## 部署（Cloudflare Pages）
 
