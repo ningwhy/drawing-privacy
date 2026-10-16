@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>简笔画涂鸦板 — 全年龄绘画与涂鸦工具</title>
-<meta name="description" content="简笔画涂鸦板：62 张简笔画线稿一键填色、自由画、照片涂鸦、每日壁纸与本地画册。全年龄段的绘画工具，无需账号，作品只存在你的设备上。">
+<meta name="description" content="简笔画涂鸦板：72 张简笔画线稿一键填色、5 种笔刷自由画、笔迹回放与 GIF/MP4 导出、照片涂鸦、每日壁纸与本地画册。全年龄段的绘画工具，无需账号，作品只存在你的设备上。">
 <!-- ⚠️ og:image 与 og:url 必须是**绝对 URL**。社交平台爬取时
      只给 origin，页面内相对路径会解析失败导致分享卡片无图。 -->
 <link rel="canonical" href="https://drawing-privacy.pages.dev/">
 <link rel="icon" href="assets/icon.png">
 <meta property="og:title" content="简笔画涂鸦板 — 全年龄绘画与涂鸦工具">
-<meta property="og:description" content="62 张简笔画线稿一键填色、自由画、照片涂鸦、每日壁纸与本地画册。">
+<meta property="og:description" content="72 张简笔画线稿一键填色、5 种笔刷自由画、笔迹回放与 GIF/MP4 导出、照片涂鸦、每日壁纸与本地画册。">
 <meta property="og:image" content="https://drawing-privacy.pages.dev/assets/shots/coloring-filled.png">
 <meta property="og:image:width" content="900">
 <meta property="og:image:height" content="1951">
@@ -47,11 +47,17 @@
         <p class="eyebrow">iPhone · iPad · 全年龄</p>
         <h1>把想画的，<br>一笔一笔画出来</h1>
         <p class="lede">
-          62 张简笔画线稿点一下就上色，空白画布自由挥笔，
+          72 张简笔画线稿点一下就上色，空白画布自由挥笔，
           也能直接在照片上涂鸦改写。全部作品只存在你的设备里。
         </p>
         <div class="cta">
-          <a class="btn btn-primary" href="#get">在 App Store 获取</a>
+          <!-- 🔴 商店链接必须带国家码。实测（2026-10-16）：
+               apps.apple.com/app/id1501497099（不带国家码）在**桌面浏览器**
+               会 302 → /cn → 301 → App Store 首页，**app id 丢失**，
+               用户点进去看到的是商店首页而不是这个 App。
+               带 /cn/ 前缀才会 301 到正确的 App 页面。
+               详见 README「商店链接规范」。 -->
+          <a class="btn btn-primary" href="https://apps.apple.com/cn/app/id1501497099?mt=8" target="_blank" rel="noopener noreferrer">在 App Store 获取</a>
           <a class="btn btn-ghost" href="#features">看看能做什么</a>
         </div>
         <ul class="facts">
@@ -59,6 +65,7 @@
           <li>无广告</li>
           <li>离线可用</li>
           <li>支持 5 种语言</li>
+          <li>免费下载</li>
         </ul>
       </div>
       <div class="hero-shots">
@@ -71,7 +78,7 @@
   <!-- 功能 -->
   <section id="features" class="section">
     <div class="wrap">
-      <h2 class="section-title">五种玩法，一个 App</h2>
+      <h2 class="section-title">六种玩法，一个 App</h2>
       <p class="section-sub">下面每一张都是真机截图，没有修图。</p>
 
       <div class="grid">
@@ -80,7 +87,7 @@
           <img src="assets/shots/coloring.png" alt="简笔画填色页面" width="900" height="1951" loading="lazy">
           <div class="card-body">
             <h3>简笔画填色</h3>
-            <p>62 张线稿，从动物、食物到日常物件。点任意封闭区域即可上色，
+            <p>72 张线稿，从动物、食物到日常物件。点任意封闭区域即可上色，
                选一支蜡笔，点第二下换颜色，看着画面一块块完成。</p>
           </div>
         </article>
@@ -88,8 +95,8 @@
         <article class="card">
           <img src="assets/shots/coloring-filled.png" alt="填色完成的作品" width="900" height="1951" loading="lazy">
           <div class="card-body">
-            <h3>62 张线稿，4 张免费</h3>
-            <p>免费就能画完 4 张完整作品。想解锁全部 62 张，升级 VIP 即可，
+            <h3>72 张线稿，4 张免费</h3>
+            <p>免费就能画完 4 张完整作品。想解锁全部 72 张，升级 VIP 即可，
                自由画、照片涂鸦、壁纸和画册保存始终免费无限。</p>
           </div>
         </article>
@@ -97,9 +104,10 @@
         <article class="card">
           <img src="assets/shots/free-draw.png" alt="自由画画布" width="900" height="1951" loading="lazy">
           <div class="card-body">
-            <h3>自由画</h3>
-            <p>白纸加 16 色蜡笔，笔粗 2 到 40 自由调节，橡皮、复原、重做一应俱全。
-               笔迹用样条插值，急转弯也不被削圆。</p>
+            <h3>5 种笔刷自由画</h3>
+            <p>白纸加 16 色彩铅，从实心笔到蜡笔、铅笔、水彩、油画，质感各不相同。
+               笔粗 2 到 40 自由调节，橡皮、复原、重做一应俱全。
+               iPad 上用 Apple Pencil 画，线条还会随下笔力度变粗变细。</p>
           </div>
         </article>
 
@@ -116,8 +124,8 @@
           <img src="assets/shots/gallery.png" alt="我的画册" width="900" height="1951" loading="lazy">
           <div class="card-body">
             <h3>我的画册</h3>
-            <p>填色、自由画、照片涂鸦的成品自动收进画册，按类型和时间排列，
-               随时翻看、回删、导出。</p>
+            <p>填色、自由画、照片涂鸦的成品自动收进画册。按标题搜索、建文件夹归类、
+               多选批量导出或删除，翻旧画变得很容易。</p>
           </div>
         </article>
 
@@ -127,6 +135,16 @@
             <h3>每日壁纸</h3>
             <p>每天一句短句配原创插画，导出成低饱和海报存进相册。
                也可以用你自己画册里的作品换成新壁纸。</p>
+          </div>
+        </article>
+
+        <article class="card card-wide">
+          <img src="assets/shots/replay.png" alt="笔迹回放：自己的线条一笔一笔重新画出来，可导出 GIF 或 MP4" width="900" height="1200" loading="lazy">
+          <div class="card-body">
+            <h3>回放你画过的每一笔</h3>
+            <p>自由画和照片涂鸦都会记下完整的绘制过程。打开回放，
+               看着自己的线条一笔一笔重新出现，可以暂停、拖进度、调快慢。
+               满意的话直接导出成 GIF 或 MP4 短视频，存进相册或分享出去。</p>
           </div>
         </article>
 
@@ -173,7 +191,7 @@
   <section id="pricing" class="section">
     <div class="wrap">
       <h2 class="section-title">简单的 VIP</h2>
-      <p class="section-sub">VIP 只做一件事：解锁全部 62 张线稿。</p>
+      <p class="section-sub">VIP 只做一件事：解锁全部 72 张线稿。</p>
 
       <div class="pricing">
         <div class="plan">
@@ -191,7 +209,7 @@
           <h3>VIP</h3>
           <div class="price">月度 / 年度<span class="price-note">具体价格以 App Store 显示为准</span></div>
           <ul>
-            <li>解锁全部 <strong>62 张</strong>线稿</li>
+            <li>解锁全部 <strong>72 张</strong>线稿</li>
             <li>月度与年度两种订阅</li>
             <li>一次订阅，全设备同步（同一 Apple 账号）</li>
             <li>随时在「设置 › Apple 账号 › 订阅」中取消</li>
@@ -222,8 +240,26 @@
         </details>
         <details>
           <summary>VIP 到底解锁了什么？</summary>
-          <p>只有一件事：全部 62 张简笔画线稿（免费可用 4 张）。
+          <p>只有一件事：全部 72 张简笔画线稿（免费可用 4 张）。
              自由画、照片涂鸦、每日壁纸、画册保存都是免费无限使用的，升级 VIP 也不会变的更少。</p>
+        </details>
+        <details>
+          <summary>能看我当时是怎么一笔一笔画的吗？</summary>
+          <p>能。自由画和照片涂鸦会记下完整的绘制过程，在「我的画册」里打开作品就能回放，
+             可以暂停、拖动进度、调快慢。满意的话还能导出成 GIF 或 MP4 短视频，
+             存进相册或用系统分享面板发出去。1.1 及更早版本保存的作品没有记录笔迹，
+             打开时会自动跳过回放这一步，图片本身不受影响。</p>
+        </details>
+        <details>
+          <summary>自由画有多少种笔？</summary>
+          <p>5 种：实心笔、蜡笔、铅笔、水彩、油画，纹理各不相同，都是纯本地渲染，
+             不需要联网也不上传。配 16 支彩铅，笔粗可以从 2 调到 40。</p>
+        </details>
+        <details>
+          <summary>iPad 上有笔压感吗？</summary>
+          <p>有。用 Apple Pencil 画的时候，线条会随你下笔的力度自然变粗变细；
+             用手指画则保持稳定的等宽笔迹，两者互不干扰。压感是硬件能力，
+             不支持 Apple Pencil 的 iPad 或 iPhone 上看不到这个效果。</p>
         </details>
         <details>
           <summary>换设备了，VIP 还在吗？</summary>
@@ -250,7 +286,11 @@
     <div class="wrap">
       <h2 class="section-title">开始画第一笔</h2>
       <p class="section-sub">免费下载，4 张线稿无需付费即可完成。</p>
-      <p class="store-note">在 iPhone 或 iPad 的 App Store 搜索「简笔画涂鸦板」或「Drawing Board」。</p>
+      <div class="cta cta-center">
+        <a class="btn btn-primary btn-lg" href="https://apps.apple.com/cn/app/id1501497099?mt=8" target="_blank" rel="noopener noreferrer">在 App Store 获取</a>
+      </div>
+      <p class="store-note">在 iPhone 或 iPad 上点上面的按钮，或在 App Store 搜索
+        「简笔画涂鸦板」或「Drawing Board」。</p>
       <p class="store-note small">
         也可以在 iPad 上看看
         <img class="inline-ipad" src="assets/shots/coloring-filled-ipad.png" alt="iPad 版本截图" width="900" height="1200" loading="lazy">
@@ -264,7 +304,7 @@
   <div class="wrap footer-in">
     <p>简笔画涂鸦板 · 全年龄绘画与涂鸦工具</p>
     <p class="footer-links">
-      <a href="https://apps.apple.com/app/id1501497099">App Store</a>
+      <a href="https://apps.apple.com/cn/app/id1501497099" target="_blank" rel="noopener noreferrer">App Store</a>
       <span>·</span>
       <a href="/support/">支持</a>
       <span>·</span>

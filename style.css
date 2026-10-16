@@ -86,6 +86,9 @@ a { color: var(--brand-dk); }
 .btn-primary:hover { background: var(--brand-dk); }
 .btn-ghost { border-color: var(--line); color: var(--ink); background: var(--card); }
 .btn-ghost:hover { border-color: var(--brand); color: var(--brand-dk); }
+/* CTA 区的下载按钮：这是全站唯一的目标动作，做得更大更显眼 */
+.btn-lg { padding: 17px 40px; font-size: 19px; }
+.cta-center { justify-content: center; margin-bottom: 20px; }
 
 .facts {
   list-style: none; margin: 0; padding: 0;
@@ -152,6 +155,18 @@ a { color: var(--brand-dk); }
 .card-body { padding: 20px 22px 24px; }
 .card-body h3 { margin: 0 0 8px; font-size: 19px; }
 .card-body p  { margin: 0; color: var(--ink-soft); font-size: 15.5px; }
+
+/* 回放是本版主线功能，图比文字多，给整行宽度。
+   ⚠️ 用 grid-column: 1 / -1 而不是 span 2：auto-fit 网格的列数随宽度变，
+      写死 span 2 在窄屏会多留一列空白。 */
+.card-wide { grid-column: 1 / -1; }
+@media (max-width: 900px) {
+  /* 窄屏下整行卡片里的手机截图会过大过细长，改成左右并排 */
+  .card-wide { flex-direction: row; align-items: stretch; }
+  .card-wide img { width: 46%; aspect-ratio: auto; object-fit: cover; }
+  .card-wide .card-body { flex: 1; display: flex; flex-direction: column;
+                          justify-content: center; padding: 22px; }
+}
 
 /* ---------- privacy ---------- */
 .privacy-grid {
@@ -244,6 +259,7 @@ footer {
   .shot-back  { width: 196px; margin-top: 24px; border-width: 6px; border-radius: 20px; }
   .shot-front { width: 172px; border-width: 6px; border-radius: 20px; }
   .btn { padding: 12px 22px; font-size: 15px; }
+  .btn-lg { padding: 15px 30px; font-size: 17px; }
   .section-sub { margin-bottom: 32px; font-size: 15.5px; }
 }
 
